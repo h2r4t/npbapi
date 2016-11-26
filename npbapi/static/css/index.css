@@ -1,0 +1,78 @@
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.team {
+  display: inline-block;
+  background-image: url(../images/12.jpg);
+}
+
+.score {
+  font-size: 20px;
+}
+
+.G {
+  width: 84px;
+  height: 84px;
+}
+.S {
+  width: 84px;
+  height: 84px;
+  background-position: -84px 0;
+}
+.DB {
+  width: 84px;
+  height: 84px;
+  background-position: -168px 0;
+}
+.D {
+  width: 84px;
+  height: 84px;
+  background-position: -252px 0;
+}
+.T {
+  width: 84px;
+  height: 84px;
+  background-position: -336px 0;
+}
+.C {
+  width: 84px;
+  height: 84px;
+  background-position: -420px 0;
+}
+.L {
+  width: 84px;
+  height: 84px;
+  background-position: 0 84px;
+}
+.F {
+  width: 84px;
+  height: 84px;
+  background-position: -84px 84px;
+}
+.M {
+  width: 84px;
+  height: 84px;
+  background-position: -168px 84px;
+}
+.Bs {
+  width: 84px;
+  height: 84px;
+  background-position: -252px 84px;
+}
+.H {
+  width: 84px;
+  height: 84px;
+  background-position: -336px 84px;
+}
+.E {
+  width: 84px;
+  height: 84px;
+  background-position: -420px 84px;
+}
+
+.start_at, .inning {
+  text-align: center;
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}
+{% block title %}unofficial NPBAPIについて{% endblock %}
+{% block content %}
+<div class="box">
+  <h3>unofficial NPBAPIとは</h3>
+  <p>　このサイトは、一人のプロ野球ファン兼Web開発初心者が、Google App Engineの無料枠の範囲内で試験的に開発したサービスです。<br>
+  日本プロ野球の試合速報・成績情報をAPI化して公開しています。もちろん非公式です。今後気が向いたら選手成績等のAPIも作るかもしれません。<br>
+  トラフィック急増等の事情により、予告なくサービスを停止する場合がありますが、ご了承ください。
+  </p>
+</div>
+<div class="box">
+  <h3>サービス管理者への連絡</h3>
+  <p>　サービス管理者への連絡は、以下のフォームからお願いします。</p>
+  <form method="POST" class="form-horizontal" name="mailform">
+    {% csrf_token %}
+    <div class="form-group">
+      <div class="col-md-4 col-xs-12">
+        <label>お名前</label>
+        {{ formset.name }}
+      </div>
+      <div class="col-md-8 col-xs-12">
+        <label>メールアドレス</label>
+        {{ formset.email }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <label>本文</label>
+        {{ formset.message }}
+      </div>
+      <button type="button" class="btn btn-success" onclick="check();" style="margin: 5px 15px;">送信</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

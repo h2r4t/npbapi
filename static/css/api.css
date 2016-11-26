@@ -1,0 +1,21 @@
+.container .box h5{
+  position: relative;
+  padding-top: .8em;
+  padding-left: .8em;
+  font-size: 15px;
+}
+.container .box h5::before {
+  position: absolute;
+  content: '';
+  background-color: #4BBF6B;
+  left: .2em;
+  height:20px;
+  width: 5px;
+}
+.alt-table-responsive {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+}

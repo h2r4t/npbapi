@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+{% block title %}unofficial NPBAPI{% endblock title %}
+{% block content %}
+  <div class="box">
+    <h3>試合速報</h3>
+    <p>JSON形式で現在の試合速報を返します。試合中は約60秒おきにデータが更新されます。</p>
+    <p style="color: red;">※今シーズンは公式戦全日程終了につき更新を終了しました。</p>
+    <button type="button" class="btn btn-success" target="_blank" onclick="window.open('https://npbapi-147514.appspot.com/score/today')">試合速報をJSONで表示</button>
+    <div class="row">
+      <section class="col-xs-3">
+        <table id="ce">
+          {% for ce_score in ce_scores %}
+          <tr><td>&nbsp;</td></tr>
+          <tr>
+            <td class="start_at" colspan="5">{{ ce_score.start_at }} 開始</td>
+          </tr>
+          <tr>
+            <td class="team {{ ce_score.visitor_team }}"></td>
+            <td class="score">
+              {% if not ce_score.visitor_score == '-' %}
+                {{ ce_score.visitor_score }}
+              {% endif %}
+            </td>
+            <td>&nbsp;-&nbsp;</td>
+            <td class="score">
+              {% if not ce_score.home_score == '-' %}
+                {{ ce_score.home_score }}
+              {% endif %}
+            </td>
+            <td class="team {{ ce_score.home_team }}"></td>
+          </tr>
+          <tr class="space">
+            <td class="inning" colspan="5">
+              {% if ce_score.inning == 'before' %}
+                試合開始前
+              {% elif ce_score.inning == 'after' %}
+                試合終了
+              {% elif ce_score.inning == 'canceled' %}
+                試合中止
+              {% else %}
+              {% load bt_to %}
+                {{ ce_score.inning | bt_to }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </section>
+      <section class="col-xs-3">
+        <table id="pa">
+          {% for pa_score in pa_scores %}
+          <tr><td>&nbsp;</td></tr>
+          <tr>
+            <td class="start_at" colspan="5">{{ pa_score.start_at }} 開始</td>
+          </tr>
+          <tr>
+            <td class="team {{ pa_score.visitor_team }}"></td>
+            <td class="score">
+              {% if not pa_score.visitor_score == '-' %}
+                {{ pa_score.visitor_score }}
+              {% endif %}
+            </td>
+            <td>&nbsp;-&nbsp;</td>
+            <td class="score">
+              {% if not pa_score.home_score == '-' %}
+                {{ pa_score.home_score }}
+              {% endif %}
+            </td>
+            <td class="team {{ pa_score.home_team }}"></td>
+          </tr>
+          <tr>
+            <td class="inning" colspan="5">
+              {% if pa_score.inning == 'before' %}
+                試合開始前
+              {% elif pa_score.inning == 'after' %}
+                試合終了
+              {% elif pa_score.inning == 'canceled' %}
+                試合中止
+              {% else %}
+              {% load bt_to %}
+                {{ pa_score.inning | bt_to }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </section>
+    </div>
+  </div>
+  <div class="box">
+    <h3>過去の試合結果</h3>
+    <p>JSON形式で過去の試合結果を返します。ただし、2016年シーズン以降のレギュラーシーズンが対象です。</p>
+    <form method="get" action="">
+      {{ form.year }}
+      {{ form.month }}
+      {{ form.day }}
+      <button type="button" class="btn btn-success" target="_blank" onclick="buttonClick();">試合結果をJSONで表示</button>
+      <label id="warning" class="label label-danger"></label>
+    </form>
+  </div>
+{% endblock content %}

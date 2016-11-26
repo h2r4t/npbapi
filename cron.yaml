@@ -1,0 +1,9 @@
+cron:
+- description: reload game data
+  url: /scraper/update
+  schedule: every 1 minutes from 12:00 to 23:59
+  timezone: Asia/Tokyo
+- description: refresh game data
+  url: /scraper/refresh
+  schedule: every day 0:00
+  timezone: Asia/Tokyo

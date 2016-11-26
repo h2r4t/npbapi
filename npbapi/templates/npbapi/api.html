@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'css/api.css' %}">
+{% endblock %}
+{% block title %}APIの仕様{% endblock %}
+{% block content %}
+<div class="box">
+  <h3>APIの仕様について</h3>
+  <p>このページでは、各APIの仕様を説明します。</p>
+</div>
+<div class="box">
+  <h3>試合速報</h3>
+  <h5>リクエストURL</h5>
+  <p><a href="/score/today">https://npbapi-147514.appspot.com/score/today</a></p>
+  <h5>更新</h5>
+  <p>レギュラーシーズン中は毎日12:00〜23:59まで約60秒毎に情報を更新します。<br>
+  オープン戦・オールスター・クライマックスシリーズ・日本シリーズは非対応です。</p>
+  <h5>レスポンス</h5>
+  <div class="alt-table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th class="col-xs-1">フィールド</th>
+        <th class="col-xs-1">内容</th>
+        <th class="col-xs-2">説明</th>
+      </tr>
+      <tr>
+        <td>inning</td>
+        <td>イニング</td>
+        <td>b:表, t:裏, before:試合前, after:試合終了, canceled:試合中止</td>
+      </tr>
+      <tr>
+        <td>home_team</td>
+        <td>ホームチーム名</td>
+        <td>H, F, M, L, Bs, E, S, G, T, C, D, DB</td>
+      </tr>
+      <tr>
+        <td>home_score</td>
+        <td>ホームチーム得点</td>
+        <td>試合前は「-」</td>
+      </tr>
+      <tr>
+        <td>visitor_team</td>
+        <td>ビジターチーム名</td>
+        <td>H, F, M, L, Bs, E, S, G, T, C, D, DB</td>
+      </tr>
+      <tr>
+        <td>visitor_score</td>
+        <td>ビジターチーム得点</td>
+        <td>試合前は「-」</td>
+      </tr>
+      <tr>
+        <td>start_at</td>
+        <td>試合開始時間</td>
+        <td>例) 18:00</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="box">
+  <h3>過去の試合結果</h3>
+  <h5>リクエストURL</h5>
+  <p>https://npbapi-147514.appspot.com/score/(ここに年月日)<br>
+  サンプル:<a href="/score/20160401">https://npbapi-147514.appspot.com/score/20160401</a><br>
+  また、2016年以降のシーズンのみ対応です。</p>
+  <h5>更新</h5>
+  <p>シーズン中は毎日24:00に情報を更新します。(試合終了が24:00以降となった場合は、手動更新となるため、更新が遅れます)<br>
+  オープン戦・オールスター・クライマックスシリーズ・日本シリーズは非対応です。</p>
+  <h5>レスポンス</h5>
+  <div class="alt-table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th class="col-xs-1">フィールド</th>
+        <th class="col-xs-1">内容</th>
+        <th class="col-xs-2">説明</th>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>年月日</td>
+        <td>yyyymmddの形式で表示</td>
+      </tr>
+      <tr>
+        <td>home_team</td>
+        <td>ホームチーム名</td>
+        <td>H, F, M, L, Bs, E, S, G, T, C, D, DB</td>
+      </tr>
+      <tr>
+        <td>home_score</td>
+        <td>ホームチーム得点</td>
+        <td>試合前は「-」</td>
+      </tr>
+      <tr>
+        <td>visitor_team</td>
+        <td>ビジターチーム名</td>
+        <td>H, F, M, L, Bs, E, S, G, T, C, D, DB</td>
+      </tr>
+      <tr>
+        <td>visitor_score</td>
+        <td>ビジターチーム得点</td>
+        <td>試合前は「-」</td>
+      </tr>
+      <tr>
+        <td>start_at</td>
+        <td>試合開始時間</td>
+        <td>例) 18:00</td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}
