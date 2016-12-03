@@ -46,7 +46,7 @@ function buttonClick(){
   var date = y + m + d;
   if (Number(today) > Number(date)) {
     warning.innerHTML = "";
-    var val = 'https://npbapi-147514.appspot.com/score/' + date + '/';
+    var val = 'http://127.0.0.1:8000/npbapi/score/' + date + '/';
     window.open(val);
   } else {
     warning.innerHTML = "今日より前の日付を選択してください。";
